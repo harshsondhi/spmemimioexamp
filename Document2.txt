@@ -34,6 +34,17 @@
     	    	logger.error(exception);
     		} 
 	}
+	File resource1 = new ClassPathResource("MyFile\\anytoolname\\harshtestfile.txt").getFile();
+	File resource10 = new ClassPathResource("MyFile\\anytoolname").getFile();
+	File resource2 = ResourceUtils.getFile("classpath:MyFile\\anytoolname\\harshtestfile.txt");
+	File resource20 = ResourceUtils.getFile("classpath:MyFile\\anytoolname");
+	
+	
+	C:\\Users\\harsh\\EUGENSAMPLE\\API\\WS\\demo\\target\\classes\\MyFile\\anytoolname\\harshtestfile.txt
+	C:\\Users\\harsh\\EUGENSAMPLE\\API\\WS\\demo\\target\\classes\\MyFile\\anytoolname
+	C:\\Users\\harsh\\EUGENSAMPLE\\API\\WS\\demo\\target\\classes\\MyFile\\anytoolname\\harshtestfile.txt
+	C:\\Users\\harsh\\EUGENSAMPLE\\API\\WS\\demo\\target\\classes\\MyFile\\anytoolname
+	
 	
 	https://www.programcreek.com/java-api-examples/?code=mariazevedo88/o3smeasures-tool/o3smeasures-tool-master/src/com/o3smeasures/util/FileExport.java
     
