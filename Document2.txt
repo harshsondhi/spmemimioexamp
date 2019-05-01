@@ -48,5 +48,103 @@
 	
 	https://www.programcreek.com/java-api-examples/?code=mariazevedo88/o3smeasures-tool/o3smeasures-tool-master/src/com/o3smeasures/util/FileExport.java
 	https://www.devglan.com/spring-boot/spring-boot-async-task-executor
+	
+	
+	http://www.bswen.com/2018/04/springboot-springboot-and-@Async-examples.html
+	import jdk.internal.util.xml.impl.Input;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.annotations.Test;
+
+import java.util.*;
+
+import static org.testng.Assert.*;
+
+
+
+@SpringBootTest
+public class ReportingToolTest extends AbstractTestNGSpringContextTests {
+
+    @Autowired
+    ReportingTool reportingTool;
+
+
+
+    @Test
+    public void testGenerateReport() throws Exception {
+        List<String> headers = new ArrayList<>();
+        headers.add("Data1");
+        headers.add("Data2");
+        SomeClass obj = new SomeClass("Long Beach",4400);
+        reportingTool.generateReport(InputEnums.OTHER, 24242424,headers,obj.getData1(),obj.getData2());
+    }
+
+    @Test
+    public void testCreateReport() throws Exception{
+        List<String> headers = new ArrayList<>();
+        headers.add("Header 1");
+        headers.add("Header 2");
+        SomeClass obj = new SomeClass("Long Beach",4400);
+        reportingTool.createReport(InputEnums.OTHER, 21,headers,obj.getData1(),obj.getData2());
+
+
+
+
+       // reportingTool.addRow(InputEnums.OTHER, 21, headers, obj.getData1(), obj.getData2());
+
+    }
+
+    @Test
+    public void testCreateReport_ExistingFileROWbyROW() throws Exception{
+        List<String> headers = new ArrayList<>();
+        headers.add("Header 1");
+        headers.add("Header 2");
+        SomeClass obj = new SomeClass("Long Beach",4400);
+        SomeClass obj2 = new SomeClass("Irvine", 90635);
+        SomeClass obj3 = new SomeClass("Torrance", 90630);
+
+        /*
+        reportingTool.createReport(InputEnums.OTHER, 24,headers,obj.getData1(),obj.getData2());
+
+
+        reportingTool.addRow(InputEnums.OTHER, 24, headers, obj.getData1(), obj.getData2());
+        reportingTool.addRow(InputEnums.OTHER, 24, headers, obj2.getData1(), obj2.getData2());
+        */
+        reportingTool.addRow(InputEnums.OTHER, 24, headers, obj3.getData1(), obj3.getData2());
+
+
+
+    }
+
+
+    @Test
+    public void testCreateReport_NewFileROWbyROW() throws Exception{
+        List<String> headers = new ArrayList<>();
+        headers.add("Header 1");
+        headers.add("Header 2");
+        SomeClass obj = new SomeClass("Long Beach",4400);
+        SomeClass obj2 = new SomeClass("Irvine", 90635);
+        SomeClass obj3 = new SomeClass("Torrance", 90630);
+
+
+        reportingTool.createReport(InputEnums.OTHER, 25,headers,obj.getData1(),obj.getData2());
+
+
+        reportingTool.addRow(InputEnums.OTHER, 25, headers, obj.getData1(), obj.getData2());
+        reportingTool.addRow(InputEnums.OTHER, 25, headers, obj2.getData1(), obj2.getData2());
+
+        reportingTool.addRow(InputEnums.OTHER, 25, headers, obj3.getData1(), obj3.getData2());
+
+        reportingTool.sendToS3(InputEnums.OTHER, 25);
+
+
+
+    }
+}
+
     
     
